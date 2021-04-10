@@ -61,3 +61,7 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "network/register.html")
+
+
+def posts_view(request):
+    return HttpResponse("TODO")
