@@ -1,10 +1,13 @@
+import json
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
+from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
+from django.utils import timezone
 
-from .models import User
+from .models import User, Profile, Post
 
 
 def index(request):
@@ -63,5 +66,40 @@ def register(request):
         return render(request, "network/register.html")
 
 
+def compose(request):
+    # return HttpResponse("TODO compose")
+
+    # Composing a new post must be via POST
+    if request.method != "POST":
+        return JsonResponse({"error": "POST request required."}, status=400)
+
+    # Check User credentials
+    data = json.loads(request.body)
+    user_pk = data.get("user_id")
+
+    try:
+        user = User.objects.get(pk=user_pk)
+    except User.DoesNotExist:
+        return JsonResponse({
+            "error": f"User does not exist."
+        }, status=400)
+
+    # Get contents of post
+    content = data.get("content", "")
+
+    # Create post with current timestamp
+    timestamp = timezone.now()
+
+    post = Post(
+        content=content,
+        author=user,
+        timestamp=timestamp,
+        likes=0
+    )
+    post.save()
+
+    return JsonResponse({"message": "Post created successfully."}, status=201)
+
+
 def posts_view(request):
-    return HttpResponse("TODO")
+    return HttpResponse("TODO posts_view")
