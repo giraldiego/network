@@ -102,4 +102,10 @@ def compose(request):
 
 
 def posts_view(request):
-    return HttpResponse("TODO posts_view")
+    # return HttpResponse("TODO posts_view")
+    # Filter emails returned based on mailbox
+    # return JsonResponse({"error": "Invalid mailbox."}, status=400)
+
+    # Return posts in reverse chronologial order
+    posts = Post.objects.all().order_by("-timestamp")
+    return JsonResponse([post.serialize() for post in posts], safe=False)
