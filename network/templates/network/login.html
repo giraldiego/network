@@ -7,60 +7,59 @@
 {% endblock %}
 
 {% block body %}
-
-
-<div class="hero-head">
-    <div class="container">
-        {% if message %}
-        <div>{{ message }}</div>
-        {% endif %}
+<section class="hero is-primary is-fullheight">
+    <div class="hero-head">
+        <div class="container">
+            {% if message %}
+            <div>{{ message }}</div>
+            {% endif %}
+        </div>
     </div>
-</div>
-<div class="hero-body">
-    <div class="container">
-        <div class="columns is-centered">
-            <div class="column is-6-tablet is-5-desktop is-4-widescreen">
-                <form action="{% url 'login' %}" method="post" class="box">
-                    {% csrf_token %}
-                    <div class="field has-text-centered">
-                        <!-- <img src="img/logo-bis.png" width="167" alt="Logo"> -->
-                        Login
-                    </div>
-                    <div class="field">
-                        <label for="username" class="label">Username</label>
-                        <div class="control has-icons-left">
-                            <input autofocus class="input" type="text" name="username" id="username"
-                                placeholder="Username" required>
-                            <span class="icon is-small is-left">
-                                <i class="fa fa-user"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label for="password" class="label">Password</label>
-                        <div class="control has-icons-left">
-                            <input class="input" type="password" name="password" id="password" placeholder="********"
-                                required>
-                            <span class="icon is-small is-left">
-                                <i class="fa fa-lock"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <button class="button is-success" type="submit">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-6-tablet is-5-desktop is-4-widescreen">
+                    <form action="{% url 'login' %}" method="post" class="box">
+                        {% csrf_token %}
+                        <div class="field has-text-centered">
+                            <!-- <img src="img/logo-bis.png" width="167" alt="Logo"> -->
                             Login
-                        </button>
-                    </div>
-                    <small>
-                        Don't have an account? <a href="{% url 'register' %}" class="has-text-link">Register
-                            here.</a>
-                    </small>
-                </form>
+                        </div>
+                        <div class="field">
+                            <label for="username" class="label">Username</label>
+                            <div class="control has-icons-left">
+                                <input autofocus class="input" type="text" name="username" id="username"
+                                    placeholder="Username" required>
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="password" class="label">Password</label>
+                            <div class="control has-icons-left">
+                                <input class="input" type="password" name="password" id="password"
+                                    placeholder="********" required>
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <button class="button is-success" type="submit">
+                                Login
+                            </button>
+                        </div>
+                        <small>
+                            Don't have an account? <a href="{% url 'register' %}" class="has-text-link">Register
+                                here.</a>
+                        </small>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
+</section>
 
 <!-- <h2>Login</h2> -->
 

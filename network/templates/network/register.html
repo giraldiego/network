@@ -7,75 +7,75 @@
 {% endblock %}
 
 {% block body %}
-
-
-<div class="hero-head">
-    <div class="container">
-        {% if message %}
-        <div>{{ message }}</div>
-        {% endif %}
+<section class="hero is-primary is-fullheight">
+    <div class="hero-head">
+        <div class="container">
+            {% if message %}
+            <div>{{ message }}</div>
+            {% endif %}
+        </div>
     </div>
-</div>
-<div class="hero-body">
-    <div class="container">
-        <div class="columns is-centered">
-            <div class="column is-6-tablet is-5-desktop is-4-widescreen">
-                <form "{% url 'register' %}" method="post" class="box">
-                    {% csrf_token %}
-                    <div class="field">
-                        <label for="username" class="label">Username</label>
-                        <div class="control has-icons-left">
-                            <input autofocus class="input" type="text" name="username" id="username"
-                                placeholder="Username" required>
-                            <span class="icon is-small is-left">
-                                <i class="fa fa-user"></i>
-                            </span>
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-6-tablet is-5-desktop is-4-widescreen">
+                    <form "{% url 'register' %}" method="post" class="box">
+                        {% csrf_token %}
+                        <div class="field">
+                            <label for="username" class="label">Username</label>
+                            <div class="control has-icons-left">
+                                <input autofocus class="input" type="text" name="username" id="username"
+                                    placeholder="Username" required>
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <label for="email" class="label">Email Address</label>
-                        <div class="control has-icons-left">
-                            <input type="email" class="input" name="email" id="email"
-                                placeholder="e.g. severus@hogwarts.edu">
-                            <span class="icon is-small is-left">
-                                <i class="fa fa-envelope"></i>
-                            </span>
+                        <div class="field">
+                            <label for="email" class="label">Email Address</label>
+                            <div class="control has-icons-left">
+                                <input type="email" class="input" name="email" id="email"
+                                    placeholder="e.g. severus@hogwarts.edu">
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-envelope"></i>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <label for="password" class="label">Password</label>
-                        <div class="control has-icons-left">
-                            <input class="input" type="password" name="password" id="password" placeholder="********"
-                                required>
-                            <span class="icon is-small is-left">
-                                <i class="fa fa-lock"></i>
-                            </span>
+                        <div class="field">
+                            <label for="password" class="label">Password</label>
+                            <div class="control has-icons-left">
+                                <input class="input" type="password" name="password" id="password"
+                                    placeholder="********" required>
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <!-- <label for="password" class="label">Password</label> -->
-                        <div class="control has-icons-left">
-                            <input class="input" type="password" name="confirmation" id="confirmation"
-                                placeholder="Re-enter password" required>
-                            <span class="icon is-small is-left">
-                                <i class="fa fa-lock"></i>
-                            </span>
+                        <div class="field">
+                            <!-- <label for="password" class="label">Password</label> -->
+                            <div class="control has-icons-left">
+                                <input class="input" type="password" name="confirmation" id="confirmation"
+                                    placeholder="Re-enter password" required>
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="field">
-                        <button class="button is-success" type="submit">
-                            Register
-                        </button>
-                    </div>
-                    <small>
-                        Already have an account? <a href="{% url 'login' %}" class="has-text-link">Log In here.</a>
-                    </small>
-                </form>
+                        <div class="field">
+                            <button class="button is-success" type="submit">
+                                Register
+                            </button>
+                        </div>
+                        <small>
+                            Already have an account? <a href="{% url 'login' %}" class="has-text-link">Log In here.</a>
+                        </small>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
+</section>
 <!-- <h2>Register</h2>
 
 

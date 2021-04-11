@@ -20,8 +20,7 @@
 </head>
 
 <body>
-
-    <div class="navbar has-shadow">
+    <div class="navbar is-white">
         <div class="navbar-brand">
             <a class="navbar-item">
                 <!-- <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"> -->
@@ -58,10 +57,10 @@
             <a class="navbar-item" href="{% url 'register' %}">Register</a>
             {% endif %}
             <!-- <div class="navbar-burger">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </div> -->
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </div> -->
         </div>
         <div class="navbar-menu">
             <div class="navbar-start">
@@ -72,11 +71,12 @@
         </div>
     </div>
 
-    <div class="hero is-primary is-fullheight-with-navbar">
-        {% block body %}
-        {% endblock %}
-    </div>
 
+    {% block body %}
+    {% endblock %}
+
+
+    <!-- Custom scripts for each page -->
     {% block script %}
     {% endblock %}
 </body>
