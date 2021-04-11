@@ -109,3 +109,7 @@ def posts_view(request):
     # Return posts in reverse chronologial order
     posts = Post.objects.all().order_by("-timestamp")
     return JsonResponse([post.serialize() for post in posts], safe=False)
+
+
+def profiles_view(request):
+    return HttpResponse("TODO profiles_view")
