@@ -15,7 +15,7 @@ from .models import User, Profile, Post
 #     model = Post
 
 class ProfilePostList(ListView):
-    paginate_by = 3
+    paginate_by = 10
     template_name = "network/posts_by_profile.html"
 
     def get_queryset(self):
