@@ -5,26 +5,20 @@
     <div class="hero-body">
         <div class="container">
             <div class="columns is-centered">
-
-                <div class="pagination">
-                    <span class="step-links">
+                <div class="column is-9-tablet is-8-desktop is-7-widescreen">
+                    <nav class="pagination is-right is-rounded" role="navigation" aria-label="pagination">
                         {% if page_obj.has_previous %}
-                        <a href="?page=1">&laquo; first</a>
-                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        <a class="pagination-previous has-background-white has-text-black-ter is-flex-grow-0"
+                            href="?page={{ page_obj.previous_page_number }}">Previous</a>
                         {% endif %}
-
                         <span class="current">
                             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
                         </span>
-
                         {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}">next</a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                        <a class=" pagination-next has-background-white has-text-black-ter is-flex-grow-0"
+                            href="?page={{ page_obj.next_page_number }}">Next page</a>
                         {% endif %}
-                    </span>
-                </div>
-
-                <div class="column is-9-tablet is-8-desktop is-7-widescreen">
+                    </nav>
                     {% for post in page_obj %}
                     <article class="media box">
                         <div class="media-content">
@@ -33,7 +27,6 @@
                                     <a href="{% url 'profile_detail' post.author.id %}">
                                         <strong>{{ post.author }}</strong>
                                     </a>
-
                                     <br>
                                     {{ post.content}}
                                     <br>
