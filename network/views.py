@@ -10,7 +10,7 @@ from django.views.generic import ListView, DetailView
 from .models import User, Profile, Post
 
 
-class PostList(ListView):
+class PostListView(ListView):
     model = Post
 
 
