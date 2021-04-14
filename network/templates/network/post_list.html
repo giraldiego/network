@@ -1,10 +1,35 @@
 {% extends "network/layout.html" %}
 
 {% block body %}
-<h2>Posts</h2>
-<ul>
-    {% for post in post_list %}
-    <li>{{ post.id }}</li>
-    {% endfor %}
-</ul>
+<section class="hero is-primary is-large">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+
+                <div class="column is-9-tablet is-8-desktop is-7-widescreen">
+                    {% for post in post_list %}
+                    <article class="media box">
+                        <div class="media-content">
+                            <div class="content">
+                                <p>
+                                    <strong>{{ post.author }}</strong>
+
+                                    <br>
+                                    {{ post.content}}
+                                    <br>
+                                    <small><a>Like</a> · <a>Dislike</a></small><small class="is-pulled-right">
+                                        {{ post.timestamp }}</small>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="media-right">
+                            <span class="tag is-small">{{ post.likes }}</span>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
