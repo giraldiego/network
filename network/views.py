@@ -10,28 +10,32 @@ from django.views.generic import ListView, DetailView
 from .models import User, Profile, Post
 
 
-class PostListView(ListView):
-    paginate_by = 10
-    model = Post
+# class PostListView(ListView):
+#     paginate_by = 10
+#     model = Post
 
 class ProfilePostList(ListView):
     paginate_by = 10
     template_name = "network/posts_by_profile.html"
 
     def get_queryset(self):
-        self.profile = get_object_or_404(Profile,pk=self.kwargs["profile_pk"])
-        return Post.objects.filter(author=self.profile.user)
+        if self.kwargs.get("profile_pk"):
+            self.profile = get_object_or_404(Profile,pk=self.kwargs["profile_pk"])
+            return Post.objects.filter(author=self.profile.user)
+        else:
+            return Post.objects.all() 
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in the publisher
-        context['profile'] = self.profile
+        if self.kwargs.get("profile_pk"):
+            context['profile'] = self.profile
         return context
 
 
-class ProfileDetailView(DetailView):
-    model = Profile
+# class ProfileDetailView(DetailView):
+#     model = Profile
 
 
 def index(request):
