@@ -11,4 +11,7 @@ urlpatterns = [
     path("register", views.register, name="register"),
 
     path("posts/", views.PostList.as_view(), name="post_list"),
+    path("profile/<int:pk>", views.ProfileDetailView.as_view(),
+         name="profile_detail"),
+
 ]

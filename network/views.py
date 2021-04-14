@@ -6,12 +6,16 @@ from django.http.response import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import User, Profile, Post
 
 
 class PostList(ListView):
     model = Post
+
+
+class ProfileDetailView(DetailView):
+    model = Profile
 
 
 def index(request):
