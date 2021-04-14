@@ -11,6 +11,7 @@ from .models import User, Profile, Post
 
 
 class PostListView(ListView):
+    paginate_by = 10
     model = Post
 
 
