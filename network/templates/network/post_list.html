@@ -12,7 +12,9 @@
                         <div class="media-content">
                             <div class="content">
                                 <p>
-                                    <strong>{{ post.author }}</strong>
+                                    <a href="{% url 'profile_detail' post.author.id %}">
+                                        <strong>{{ post.author }}</strong>
+                                    </a>
 
                                     <br>
                                     {{ post.content}}
