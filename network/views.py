@@ -15,15 +15,16 @@ from .models import User, Profile, Post
 #     model = Post
 
 class ProfilePostList(ListView):
-    paginate_by = 10
+    paginate_by = 3
     template_name = "network/posts_by_profile.html"
 
     def get_queryset(self):
         if self.kwargs.get("profile_pk"):
-            self.profile = get_object_or_404(Profile,pk=self.kwargs["profile_pk"])
+            self.profile = get_object_or_404(
+                Profile, pk=self.kwargs["profile_pk"])
             return Post.objects.filter(author=self.profile.user)
         else:
-            return Post.objects.all() 
+            return Post.objects.all()
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context

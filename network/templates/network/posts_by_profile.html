@@ -1,56 +1,88 @@
-{% extends "network/layout.html" %}
-
-{% block body %}
+{% extends "network/layout.html" %} {% block body %}
 <section class="hero is-primary">
-    <div class="hero-body">
-        <div class="container">
-            <div class="columns is-centered">
-                <div class="column is-9-tablet is-8-desktop is-7-widescreen">
-                    
-                    {% if profile %}
-                    <div>
-                    <h1>{{ profile.user.username }}</h1>
-                    <p>Followers: {{ profile.followed_by|length }}</p>
-                    <p>Follows: {{ profile.follow|length }}</p>
-                    </div>
-                    {% endif %}
-                    <nav class="pagination is-right is-rounded" role="navigation" aria-label="pagination">
-                        {% if page_obj.has_previous %}
-                        <a class="pagination-previous has-background-white has-text-black-ter is-flex-grow-0"
-                            href="?page={{ page_obj.previous_page_number }}">Previous</a>
-                        {% endif %}
-                        <span class="current">
-                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                        </span>
-                        {% if page_obj.has_next %}
-                        <a class=" pagination-next has-background-white has-text-black-ter is-flex-grow-0"
-                            href="?page={{ page_obj.next_page_number }}">Next page</a>
-                        {% endif %}
-                    </nav>
-                    {% for post in page_obj %}
-                    <article class="media box">
-                        <div class="media-content">
-                            <div class="content">
-                                <p>
-                                    <a href="{% url 'profile_post_list' post.author.id %}">
-                                        <strong>{{ post.author }}</strong>
-                                    </a>
-                                    <br>
-                                    {{ post.content}}
-                                    <br>
-                                    <small><a>Like</a> · <a>Dislike</a></small><small class="is-pulled-right">
-                                        {{ post.timestamp }}</small>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="media-right">
-                            <span class="tag is-small">{{ post.likes }}</span>
-                        </div>
-                    </article>
-                    {% endfor %}
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-9-tablet is-8-desktop is-7-widescreen">
+          {% if profile %}
+          <div class="card">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-64x64">
+                    <img src="{{profile.avatar_url}}" alt="Placeholder image" />
+                  </figure>
                 </div>
+                <div class="media-content">
+                  <p class="title is-4 has-text-black">
+                    {{profile.user.first_name}} {{profile.user.last_name}}
+                  </p>
+                  <p class="subtitle is-6 has-text-black">
+                    @{{profile.user.username}}
+                  </p>
+                </div>
+              </div>
+              <div class="content">
+                {{ profile.bio }}
+                <br />
+                <small> Followers: {{ profile.followed_by|length }} </small>
+                <small>Follows: {{ profile.follows|length }} </small>
+              </div>
             </div>
+            <footer class="card-footer">
+              <a class="card-footer-item">Follow</a>
+              <a class="card-footer-item"></a>
+              <a class="card-footer-item">Unfollow</a>
+            </footer>
+          </div>
+          {% endif %}
+          <nav
+            class="pagination is-left is-rounded"
+            role="navigation"
+            aria-label="pagination"
+          >
+            {% if page_obj.has_previous %}
+            <a
+              class="pagination-previous has-background-white has-text-black-ter is-flex-grow-0"
+              href="?page={{ page_obj.previous_page_number }}"
+              >Previous</a
+            >
+            {% endif %}
+            <span class="current">
+              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}
+            <a
+              class="pagination-next has-background-white has-text-black-ter is-flex-grow-0"
+              href="?page={{ page_obj.next_page_number }}"
+              >Next page</a
+            >
+            {% endif %}
+          </nav>
+          {% for post in page_obj %}
+          <article class="media box">
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <a href="{% url 'profile_post_list' post.author.id %}">
+                    <strong>{{ post.author }}</strong>
+                  </a>
+                  <br />
+                  {{ post.content}}
+                  <br />
+                  <small><a>Like</a> · <a>Dislike</a></small
+                  ><small class="is-pulled-right"> {{ post.timestamp }}</small>
+                </p>
+              </div>
+            </div>
+            <div class="media-right">
+              <span class="tag is-small">{{ post.likes }}</span>
+            </div>
+          </article>
+          {% endfor %}
         </div>
+      </div>
     </div>
+  </div>
 </section>
 {% endblock %}
