@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http.response import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.utils import timezone
 from django.views.generic import ListView, DetailView
@@ -13,6 +13,21 @@ from .models import User, Profile, Post
 class PostListView(ListView):
     paginate_by = 10
     model = Post
+
+class ProfilePostList(ListView):
+    paginate_by = 10
+    template_name = "network/posts_by_profile.html"
+
+    def get_queryset(self):
+        self.profile = get_object_or_404(Profile,pk=self.kwargs["profile_pk"])
+        return Post.objects.filter(author=self.profile.user)
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in the publisher
+        context['profile'] = self.profile
+        return context
 
 
 class ProfileDetailView(DetailView):

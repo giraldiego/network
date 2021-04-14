@@ -1,6 +1,7 @@
-<img src="{{ object.avatar_url }}" alt="avatar"></img>
+{% extends "network/layout.html" %}
+
+{% block body %}
 <h1>{{ object.user.username }}</h1>
-<p>{{ object.bio }}</p>
 <p>Followers: {{ object.followed_by|length }}</p>
 <p>Follows: {{ object.follow|length }}</p>
-<p>Created: {{ object.created|date }}</p>
+{% endblock %}

@@ -6,6 +6,11 @@
         <div class="container">
             <div class="columns is-centered">
                 <div class="column is-9-tablet is-8-desktop is-7-widescreen">
+                    <div>
+                    <h1>{{ object.user.username }}</h1>
+                    <p>Followers: {{ object.followed_by|length }}</p>
+                    <p>Follows: {{ object.follow|length }}</p>
+                    </div>
                     <nav class="pagination is-right is-rounded" role="navigation" aria-label="pagination">
                         {% if page_obj.has_previous %}
                         <a class="pagination-previous has-background-white has-text-black-ter is-flex-grow-0"
@@ -24,7 +29,7 @@
                         <div class="media-content">
                             <div class="content">
                                 <p>
-                                    <a href="{% url 'profile_post_list' post.author.profile.id %}">
+                                    <a href="{% url 'profile_post_list' post.author.id %}">
                                         <strong>{{ post.author }}</strong>
                                     </a>
                                     <br>
