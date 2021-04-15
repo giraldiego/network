@@ -11,8 +11,10 @@ urlpatterns = [
     path("register", views.register, name="register"),
 
     path("posts/", views.ProfilePostList.as_view(), name="post_list"),
-    path("posts/<int:profile_pk>", views.ProfilePostList.as_view(), name="profile_post_list"),
+    path("posts/<int:profile_pk>", views.ProfilePostList.as_view(),
+         name="profile_post_list"),
     # path("profile/<int:pk>", views.ProfileDetailView.as_view(), name="profile_detail"),
 
+    path("compose/", views.compose, name="compose"),
 
 ]

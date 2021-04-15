@@ -1,11 +1,13 @@
 import json
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.http.response import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, DetailView
 from .models import User, Profile, Post
 
@@ -37,6 +39,36 @@ class ProfilePostList(ListView):
 
 # class ProfileDetailView(DetailView):
 #     model = Profile
+
+@csrf_exempt
+@login_required
+def compose(request):
+
+    # Composing a new post must be via POST
+    if request.method != "POST":
+        return JsonResponse({"error": "POST request required."}, status=400)
+
+    # Check not empty content
+    data = json.loads(request.body)
+    content = data.get("content")
+    if not content:
+        return JsonResponse({
+            "error": "Posts with empty content are not allowed."
+        }, status=400)
+
+    #  users
+    author = request.user
+    timestamp = timezone.now()
+
+    post = Post(
+        content=content,
+        author=author,
+        timestamp=timestamp,
+        likes=0,
+    )
+    post.save()
+
+    return JsonResponse({"message": "Post saved successfully."}, status=201)
 
 
 def index(request):
