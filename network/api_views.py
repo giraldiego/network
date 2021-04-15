@@ -2,10 +2,12 @@ import json
 from django.contrib.auth.decorators import login_required
 from django.http.response import JsonResponse
 from django.utils import timezone
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import User, Profile, Post
 
 
+@csrf_exempt
 @login_required
 def post_create(request):
 

@@ -14,13 +14,14 @@
 
                 <div class="column is-9-tablet is-8-desktop is-7-widescreen">
                     {% if user.is_authenticated %}
-                    <div class="has-text-centered">Welcome, {{ user.username }}</div>
+                    <h3 class="title has-text-centered">New Post</h3>
                     <!-- Post Comment Form -->
                     <form class="media box">
                         <div class="media-content">
                             <div class="field">
                                 <p class="control">
-                                    <textarea class="textarea" placeholder="Add a comment..." required></textarea>
+                                    <textarea class="textarea" placeholder="Add a comment..." name="content"
+                                        required></textarea>
                                 </p>
                             </div>
                             <div class="field">
@@ -30,6 +31,13 @@
                             </div>
                         </div>
                     </form>
+                    {% else %}
+                    <div class="box has-text-centered">
+                        Please <a href="{% url 'login' %}" class="has-text-link">Log In</a>
+                        or
+                        <a href="{% url 'register' %}" class="has-text-link">register
+                        </a> to post.
+                    </div>
                     {% endif %}
                 </div>
             </div>
@@ -37,3 +45,45 @@
     </div>
 </section>
 {% endblock %}
+
+{% block script %}
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector("form").addEventListener("submit", (ev) => {
+            ev.preventDefault();
+            const content = document.querySelector("textarea").value;
+            document.querySelector("textarea").value = "";
+            console.log(content);
+
+            const post = {
+                content: content,
+            }
+
+            fetch('/api/posts/create/', {
+                method: 'POST',
+                body: JSON.stringify(post)
+            })
+                .then(response => response.json())
+                .then(result => {
+                    // Print result
+                    console.log(result);
+                });
+
+        });
+    });
+</script>
+{% endblock %}
+
+<!-- fetch('/emails', {
+    method: 'POST',
+    body: JSON.stringify({
+        recipients: 'baz@example.com',
+        subject: 'Meeting time',
+        body: 'How about we meet tomorrow at 3pm?'
+    })
+  })
+  .then(response => response.json())
+  .then(result => {
+      // Print result
+      console.log(result);
+  }); -->
