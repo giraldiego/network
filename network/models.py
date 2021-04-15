@@ -22,7 +22,7 @@ class Profile(models.Model):
         ordering = ("-created",)
 
     def profile_posts(self):
-        pass
+        return self.user.post_set.all().order_by("-timestamp")
 
 
 class Post(models.Model):
