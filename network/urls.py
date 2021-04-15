@@ -1,7 +1,7 @@
 
 from django.urls import path
 
-from . import views
+from . import views, api_views
 
 urlpatterns = [
     path("", views.index, name="index"),
@@ -15,6 +15,6 @@ urlpatterns = [
          name="profile_post_list"),
     # path("profile/<int:pk>", views.ProfileDetailView.as_view(), name="profile_detail"),
 
-    path("compose/", views.compose, name="compose"),
+    path("api/posts/create/", api_views.post_create, name="post_create"),
 
 ]
