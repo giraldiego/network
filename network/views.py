@@ -33,8 +33,13 @@ class ProfilePostList(ListView):
         return context
 
 
+def post_create(request):
+    return render(request, "network/post_create.html")
+
+
 def index(request):
-    return render(request, "network/index.html")
+    return HttpResponseRedirect(reverse("post_list"))
+    # return render(request, "network/index.html")
 
 
 def login_view(request):

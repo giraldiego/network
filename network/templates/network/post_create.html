@@ -1,0 +1,39 @@
+{% extends "network/layout.html" %}
+
+{% load static %}
+
+{% block styles %}
+<!-- <link rel="stylesheet" href="{% static 'network/css/debug.css' %}"> -->
+{% endblock %}
+
+{% block body %}
+<section class="hero is-primary is-fullheight-with-navbar">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+
+                <div class="column is-9-tablet is-8-desktop is-7-widescreen">
+                    {% if user.is_authenticated %}
+                    <div class="has-text-centered">Welcome, {{ user.username }}</div>
+                    <!-- Post Comment Form -->
+                    <form class="media box">
+                        <div class="media-content">
+                            <div class="field">
+                                <p class="control">
+                                    <textarea class="textarea" placeholder="Add a comment..." required></textarea>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p class="control">
+                                    <button type="submit" class="button">Post</button>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

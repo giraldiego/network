@@ -15,6 +15,8 @@ urlpatterns = [
          name="profile_post_list"),
     # path("profile/<int:pk>", views.ProfileDetailView.as_view(), name="profile_detail"),
 
-    path("api/posts/create/", api_views.post_create, name="post_create"),
+    path("posts/create/", views.post_create, name="post_create"),
+
+    path("api/posts/create/", api_views.post_create, name="api_post_create"),
 
 ]
